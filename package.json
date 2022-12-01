@@ -1,5 +1,5 @@
 {
-  "name": "wei@file-exports",
+  "name": "modules-export",
   "type": "module",
   "version": "1.0.3",
   "packageManager": "pnpm@7.8.0",
