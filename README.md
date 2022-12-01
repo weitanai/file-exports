@@ -24,7 +24,7 @@ Get the exports by evaluate the module in worker thread.
 ```ts
 import { getStaticExports } from 'pkg-exports'
 
-const exports = await getStaticExports()
+const exports = await getStaticExports('path');
 console.log(exports) ;
 ```
 
