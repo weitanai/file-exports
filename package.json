@@ -1,0 +1,57 @@
+{
+  "name": "file-exports",
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "pnpm@7.8.0",
+  "author": "weitanai",
+  "description": "Get exports of an folder export.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weitanai/file-exports.git"
+  },
+  "keywords": [],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint .",
+    "prepublishOnly": "nr build",
+    "release": "bumpp && npm publish",
+    "start": "esno src/index.ts",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.25.2",
+    "@antfu/ni": "^0.17.2",
+    "@antfu/utils": "^0.5.2",
+    "@types/node": "^18.6.3",
+    "bumpp": "^8.2.1",
+    "eslint": "^8.21.0",
+    "tsup": "^6.5.0",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.4",
+    "vitest": "^0.20.2"
+  }
+}
