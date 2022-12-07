@@ -1,7 +1,5 @@
 import { promises as fs, lstatSync } from 'fs';
 import { resolve } from 'path'
-import { fileURLToPath } from 'url'
-import os from 'os';
 
 // todo 
 // 1 child dir file path resolve
@@ -12,10 +10,8 @@ import os from 'os';
 // flag all solve
 
 export async function getStaticExports(path: string) {
-    const currentFile = fileURLToPath(path);
-    const url = resolve(currentFile, '../');
+    const url = resolve(path, '../');
     const allFilesPath = await getFilePath(url, path);
-
     let readExportObj: Record<string, Function> = {};
     for (const item of allFilesPath) {
         const resExports = await import(item);
@@ -47,3 +43,4 @@ async function getFilePath(path: string, excludeFile?: string): Promise<string[]
     }
     return allFilePaths
 }
+

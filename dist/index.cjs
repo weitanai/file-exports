@@ -25,10 +25,8 @@ __export(src_exports, {
 module.exports = __toCommonJS(src_exports);
 var import_fs = require("fs");
 var import_path = require("path");
-var import_url = require("url");
 async function getStaticExports(path) {
-  const currentFile = (0, import_url.fileURLToPath)(path);
-  const url = (0, import_path.resolve)(currentFile, "../");
+  const url = (0, import_path.resolve)(path, "../");
   const allFilesPath = await getFilePath(url, path);
   let readExportObj = {};
   for (const item of allFilesPath) {

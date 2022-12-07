@@ -1,10 +1,8 @@
 // src/index.ts
 import { promises as fs, lstatSync } from "fs";
 import { resolve } from "path";
-import { fileURLToPath } from "url";
 async function getStaticExports(path) {
-  const currentFile = fileURLToPath(path);
-  const url = resolve(currentFile, "../");
+  const url = resolve(path, "../");
   const allFilesPath = await getFilePath(url, path);
   let readExportObj = {};
   for (const item of allFilesPath) {
