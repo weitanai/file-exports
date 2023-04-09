@@ -92,11 +92,6 @@ const versionIncrements = [
       return
     }
   
-    // // Commit changes to the Git.
-    step('\nCommitting changes...')
-    await run('git', ['add', '-A'])
-    await run('git', ['commit', '-m', `release: v${targetVersion}`])
-  
     // // Publish the package.
     step('\nPublishing the package...')
     try {
@@ -111,7 +106,8 @@ const versionIncrements = [
    // 提交代码到GitHub
    try {
     await run('git', ['add', '.']);
-    await run('git', ['commit', '-m', commitMessage]);
+    await run('git', ['commit', '-m', `release: v${targetVersion}`])
+
     await run('git', ['push']);
     step('代码已提交到GitHub');
   } catch (error) {
