@@ -100,17 +100,23 @@ const versionIncrements = [
     // // Publish the package.
     step('\nPublishing the package...')
     try {
-        await execa('npm', ['publish']);
-        console.log(chalk.green('已发布到npm'));
+        await run('npm', ['publish']);
+        step('已发布到npm');
       } catch (error) {
-        console.log(chalk.red('发布到npm失败，请手动发布'));
+        step('发布到npm失败，请手动发布');
       }
   
     // // Push to GitHub.
     step('\nPushing to GitHub...')
-    await run('git', ['tag', `v${targetVersion}`])
-    await run('git', ['push', 'origin', `refs/tags/v${targetVersion}`])
-    await run('git', ['push'])
+   // 提交代码到GitHub
+   try {
+    await run('git', ['add', '.']);
+    await run('git', ['commit', '-m', commitMessage]);
+    await run('git', ['push']);
+    step('代码已提交到GitHub');
+  } catch (error) {
+    step('提交代码到GitHub失败，请手动提交');
+  }
   }
   
   function updatePackage(version) {
