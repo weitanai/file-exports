@@ -28,3 +28,7 @@ const exports = await getStaticExports('path');
 console.log(exports) ;
 ```
 
+
+
+// wip
+- package not support ts format;
