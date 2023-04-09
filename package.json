@@ -1,7 +1,7 @@
 {
   "name": "modules-export",
   "type": "module",
-  "version": "1.6.5",
+  "version": "1.6.6",
   "packageManager": "pnpm@7.8.0",
   "author": "weitanai",
   "description": "Get exports of an folder export.",

@@ -1,3 +1,7 @@
+## [1.6.6](https://github.com/weitanai/file-exports/compare/v1.6.1...v1.6.6) (2023-04-09)
+
+
+
 ## [1.6.5](https://github.com/weitanai/file-exports/compare/v1.6.1...v1.6.5) (2023-04-09)
 
 

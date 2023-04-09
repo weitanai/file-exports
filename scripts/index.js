@@ -110,10 +110,13 @@ async function main() {
   }
 
   // Push to GitHub.
-  step('\nPushing to GitHub...')
+  step('\nPushing to GitHub...');
   try {
     await run('git', ['add', '.']);
+    step('\n  after git add all file');
+
     await run('git', ['commit', '-m', `release: v${targetVersion}`]);
+    step('\n after git commint ');
 
     await run('git', ['push']);
     step('Code has been committed to GitHub');
