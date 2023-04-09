@@ -99,10 +99,12 @@ const versionIncrements = [
   
     // // Publish the package.
     step('\nPublishing the package...')
-    await run ('npm', [
-      'publish', '--tag', tag, '--new-version', targetVersion, '--no-commit-hooks',
-      '--no-git-tag-version'
-    ])
+    try {
+        await execa('npm', ['publish']);
+        console.log(chalk.green('已发布到npm'));
+      } catch (error) {
+        console.log(chalk.red('发布到npm失败，请手动发布'));
+      }
   
     // // Push to GitHub.
     step('\nPushing to GitHub...')
