@@ -136,3 +136,16 @@ function updatePackage(version) {
 
 main().catch((err) => console.error(err));
 
+
+
+// 通过 enquirer.prompt 获取用户选择的发布类型（major, minor, patch 或自定义版本号）。
+// 如果用户选择了自定义版本号，再次提示用户输入自定义版本号。
+// 检查目标版本号是否有效，以及是否大于当前版本号。
+// 提示用户选择标签类型（如 latest、beta 等）。
+// 确认用户是否同意使用所选标签发布新版本。
+// 更新 package.json 文件中的版本号。
+// 构建 npm 包。
+// 生成变更日志。
+// 确认用户是否同意生成的变更日志。
+// 发布 npm 包。
+// 将更改推送到 GitHub。

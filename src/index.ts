@@ -29,18 +29,15 @@ export async function getStaticExports(path: string) {
     return readExportObj;
 }
 
-async function getFilePath(path: string, excludeFile?: string): Promise<string[]> {
+async function getFilePath(path) {
     let allFilePaths: string[] = [];
     const allFiles = await fs.readdir(path);
     for (let itme of allFiles) {
         const current = resolve(path, itme);
-        if (lstatSync(current).isDirectory()) {
-            const childPath = await getFilePath(current);
-            allFilePaths = [...childPath, ...allFilePaths];
-        } else if (current !== excludeFile) {
-            allFilePaths.push(current);
-        }
+        allFilePaths.push(current);
     }
-    return allFilePaths
-}
 
+    return allFilePaths.map(item=> item.slice(path.length+1))
+}
+const url = '/Users/max/workJob/static/src/templates/public/arise/templates';
+getFilePath(url).then(console.log)

@@ -1,9 +1,9 @@
 // src/index.ts
-import { promises as fs, lstatSync } from "fs";
+import { promises as fs } from "fs";
 import { resolve } from "path";
 async function getStaticExports(path) {
-  const url = resolve(path, "../");
-  const allFilesPath = await getFilePath(url, path);
+  const url2 = resolve(path, "../");
+  const allFilesPath = await getFilePath(url2, path);
   let readExportObj = {};
   for (const item of allFilesPath) {
     const resExports = await import(item);
@@ -19,20 +19,17 @@ async function getStaticExports(path) {
   }
   return readExportObj;
 }
-async function getFilePath(path, excludeFile) {
+async function getFilePath(path) {
   let allFilePaths = [];
   const allFiles = await fs.readdir(path);
   for (let itme of allFiles) {
     const current = resolve(path, itme);
-    if (lstatSync(current).isDirectory()) {
-      const childPath = await getFilePath(current);
-      allFilePaths = [...childPath, ...allFilePaths];
-    } else if (current !== excludeFile) {
-      allFilePaths.push(current);
-    }
+    allFilePaths.push(current);
   }
-  return allFilePaths;
+  return allFilePaths.map((item) => item.slice(path.length + 1));
 }
+var url = "/Users/max/workJob/static/src/templates/public/arise/templates";
+getFilePath(url).then(console.log);
 export {
   getStaticExports
 };

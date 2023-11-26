@@ -26,8 +26,8 @@ module.exports = __toCommonJS(src_exports);
 var import_fs = require("fs");
 var import_path = require("path");
 async function getStaticExports(path) {
-  const url = (0, import_path.resolve)(path, "../");
-  const allFilesPath = await getFilePath(url, path);
+  const url2 = (0, import_path.resolve)(path, "../");
+  const allFilesPath = await getFilePath(url2, path);
   let readExportObj = {};
   for (const item of allFilesPath) {
     const resExports = await import(item);
@@ -43,20 +43,17 @@ async function getStaticExports(path) {
   }
   return readExportObj;
 }
-async function getFilePath(path, excludeFile) {
+async function getFilePath(path) {
   let allFilePaths = [];
   const allFiles = await import_fs.promises.readdir(path);
   for (let itme of allFiles) {
     const current = (0, import_path.resolve)(path, itme);
-    if ((0, import_fs.lstatSync)(current).isDirectory()) {
-      const childPath = await getFilePath(current);
-      allFilePaths = [...childPath, ...allFilePaths];
-    } else if (current !== excludeFile) {
-      allFilePaths.push(current);
-    }
+    allFilePaths.push(current);
   }
-  return allFilePaths;
+  return allFilePaths.map((item) => item.slice(path.length + 1));
 }
+var url = "/Users/max/workJob/static/src/templates/public/arise/templates";
+getFilePath(url).then(console.log);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   getStaticExports
